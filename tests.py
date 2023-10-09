@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 import sys
 import shutil
 import tempfile
@@ -42,7 +43,7 @@ class SnapshotTests(unittest.TestCase):
                     '--files',
                     *target_files,
                     '--',
-                    'bash',
+                    os.environ.get('SHELL', 'bash'),  # Cope with windows
                     str(script),
                 ],
                 capture_output=True,
